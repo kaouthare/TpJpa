@@ -27,5 +27,23 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/temp/org/codehaus/jackson/jackson-core-asl/1.9.2/jackson-core-asl-1.9.2.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.codehaus.jackson"/>
+			<attribute name="maven.artifactId" value="jackson-core-asl"/>
+			<attribute name="maven.version" value="1.9.2"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/temp/javax/xml/bind/jaxb-api/2.2.2/jaxb-api-2.2.2.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="javax.xml.bind"/>
+			<attribute name="maven.artifactId" value="jaxb-api"/>
+			<attribute name="maven.version" value="2.2.2"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

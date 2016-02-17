@@ -1,5 +1,6 @@
 package domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,21 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ElectronicDevices {
+@DiscriminatorValue("Electronic Device")
+public class ElectronicDevices extends SmartDevices{
+	/*
+	 * Attributs de la classe Electronics devices
 	private long id;
 	private int conso;
 	private Person owner;
-	
+	*/
 	public ElectronicDevices(){
-		
+		super();
 	}
 	
-	public ElectronicDevices(long id, int conso, Person person){
-		this.id=id;
-		this.owner=person;
-		this.conso=conso;
+	public ElectronicDevices( int conso, Home home){
+		super(conso, home);
 	}
 
+	/*Question 1 à 5
 	@Id
 	@GeneratedValue
 	public long getId() {
@@ -49,5 +52,5 @@ public class ElectronicDevices {
 	public void setOwner(Person owner) {
 		this.owner = owner;
 	}
-
+*/
 }

@@ -10,30 +10,43 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 public class Home {
+	// les attributs de la classe Home : maison
 	private long id;
 	private int taille; 
 	private int NbPiece;
 	
+	private List<SmartDevices> heaters;
+	private List<SmartDevices> electronicDevices;
 	
+	//le proprietaire de la maison 
+	@JsonIgnore
+	@XmlTransient
 	private Person owner;
-
-	private List<Heaters> chaufagges = new ArrayList<Heaters>();
+	//une maison a une liste chauffages 
+	//private List<Heaters> chaufagges = new ArrayList<Heaters>();
 	
 	public Home(){
-		
-	}
-	public Home(Person person){
-		this.owner=person;
+		super();
+		this.heaters=new ArrayList<SmartDevices>();
+		this.electronicDevices=new ArrayList<SmartDevices>();
 		
 	}
 	
-	public Home(int taille, int NbPiece, Person person){
+	
+	public Home(int taille, int NbPiece, Person person, List<SmartDevices> heaters,
+			List<SmartDevices> electronicDevices){
+		super();
 		this.taille=taille;
 		this.NbPiece=NbPiece;
 		this.owner=person;
+		this.heaters=heaters;
+		this.electronicDevices=electronicDevices;
 	}
 	
 	@Id
@@ -70,9 +83,40 @@ public class Home {
 	public void setOwner(Person owner) {
 		owner = owner;
 	}
-	
+
 	@OneToMany(mappedBy="home")
-	public List<Heaters> getChaufagges() {
+	public List<SmartDevices> getHeaters() {
+		return heaters;
+	}
+
+
+	public void setHeaters(List<SmartDevices> heaters) {
+		this.heaters = heaters;
+	}
+
+	@OneToMany(mappedBy="home")
+	public List<SmartDevices> getElectronicDevices() {
+		return electronicDevices;
+	}
+
+
+	public void setElectronicDevices(List<SmartDevices> electronicDevices) {
+		this.electronicDevices = electronicDevices;
+	}
+	
+	public void addDevice(SmartDevices device){
+		//Test s'il s'agit d'un chauffage
+		if (device instanceof Heaters){
+			heaters.add(device);
+		}else if (device instanceof ElectronicDevices){
+			electronicDevices.add(device);
+		}
+	}
+	
+	/*
+	 * avant l'heritage
+	 * public List<Heaters> getChaufagges() {
+	 
 		return chaufagges;
 	}
 
@@ -87,7 +131,7 @@ public class Home {
 	    public void removeChauffage(Heaters h){
 	    	chaufagges.remove(h);
 	    }
-	    
+	    */
 	    
 	   
 		

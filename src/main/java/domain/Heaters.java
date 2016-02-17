@@ -1,5 +1,6 @@
 package domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,22 +9,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Heaters {
-	private long id;
-	private int conso;
+@DiscriminatorValue("Heaters")
+public class Heaters extends SmartDevices {
 	
-	
-	private Home home;
-	
-
 	public Heaters(){
-		
+		super();
 	}
 
-	public Heaters(int conso){
-		this.conso=conso;
+	//constructeur apres heritages 
+	public Heaters(int conso, Home home){
+		super(conso, home);
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Electronic device : [id=" + super.getId() + ", conso=" + super.getConso() + "]";
 	}
 
+	/* Question 1 à 5
 	@Id
 	@GeneratedValue
 	public long getId() {
@@ -52,4 +57,5 @@ public class Heaters {
 	public void setHome(Home home) {
 		this.home = home;
 	}
+	*/
 }

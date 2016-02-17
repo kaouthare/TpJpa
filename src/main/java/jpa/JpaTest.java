@@ -14,12 +14,15 @@ import domain.ElectronicDevices;
 import domain.Heaters;
 import domain.Home;
 import domain.Person;
+import domain.SmartDevices;
 public class JpaTest {
 
 	/**
 	 * @param args
 	 */
-	
+	public JpaTest(EntityManager entityManager){
+		
+	}
 	
 	public static void main(String[] args) {
 		/*Initialisation de l'entityManager*/
@@ -32,7 +35,57 @@ public class JpaTest {
 		tx.begin();
 		
 		try {
+			Person P1= new Person();
+			P1.setNom("Dupont");
 			
+			Person P2= new Person();
+			P2.setNom("Legentil");
+			
+			//Créer des maison
+			Home H1=new Home();
+			H1.setNbPiece(2);
+			H1.setTaille(80);
+			
+			Home H2=new Home();
+			H2.setNbPiece(3);
+			H2.setTaille(100);
+			
+		
+			
+			//créer deschauffages
+			Heaters C1= new Heaters();
+			C1.setConso(200);
+			C1.setHome(H2);
+			
+			Heaters C2= new Heaters();
+			C2.setConso(180);
+			C2.setHome(H2);
+			
+			
+			//ajout d'un autre chauffage : heater
+			Heaters C3= new Heaters();
+			C3.setConso(250);
+			C3.setHome(H2);
+			H1.getHeaters().add(C1);
+			H1.getHeaters().add(C2);
+			H2.getHeaters().add(C2);
+			H2.getHeaters().add(C3);
+		
+			
+			ElectronicDevices ED1= new ElectronicDevices();
+			ED1.setConso(34);
+			H1.getElectronicDevices().add(ED1);
+			H2.getElectronicDevices().add(ED1);
+			//Ajouter un deuxieme Device
+			ElectronicDevices ED2= new ElectronicDevices();
+			ED2.setConso(340);
+			H1.getElectronicDevices().add(ED2);
+			
+			P1.addMaisons(H1);
+			P2.getResidence().add(H1);
+			
+			
+			/* Avant héritage 
 			//Ajouter des maison
 			Home H1 = new Home();
 			H1.setTaille(183);
@@ -127,13 +180,15 @@ public class JpaTest {
 			P2.setResidence(homes2);
 			manager.persist(P2);
 
-		
+		*/
 			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		tx.commit();
+		
+		
 		
 		/*Liste des requetes
 		
@@ -165,8 +220,10 @@ public class JpaTest {
 		manager.close();
 		factory.close();
 	}
-
 	
+		
+	
+
 
 
 }
