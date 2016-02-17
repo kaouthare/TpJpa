@@ -1,17 +1,19 @@
 package jpa;
 
+import java.awt.List;
 import java.util.ArrayList;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import domain.ElectronicDevices;
 import domain.Heaters;
 import domain.Home;
 import domain.Person;
-
 public class JpaTest {
 
 	/**
@@ -132,17 +134,39 @@ public class JpaTest {
 			e.printStackTrace();
 		}
 		tx.commit();
-//		String s = "SELECT e FROM Person as e where e.name=:name";
 		
-//		Query q = manager.createQuery(s,Person.class);
-//		q.setParameter("name", "martin"); 
-//		List<Person> res = q.getResultList();
+		/*Liste des requetes
 		
-//		System.err.println(res.size());
-//		System.err.println(res.get(0).getName());
+	//Requete 1
+		String s = "SELECT e FROM Person as e where e.nom=:nom";
+	
+		Query q = (Query) manager.createQuery(s,Person.class);
+		q.setParameter("nom", "legentil"); 
+		List<Person> res = q.getResultList();
+		
+		System.err.println(res.size());
+		System.err.println(res.get(0).getNom());
+		
+		
+		//Requete 2
+		String s2 = "SELECT p FROM Person as p";
+		Query q2 = (Query) manager.createQuery(s2,Person.class); //créer la requete ou on indique les entités manipulés
+		List<Person> res2 = q2.getResultList(); //recupérer résultat
+		
+		//afficher résultat
+		for(int i=0; i< res.size();i++){
+			System.err.println("id:" +res2.get(i).getId());
+			System.err.println("nom:"+res2.get(i).getNom()); //get(i) obtenir le i-éme résultat)
+			System.err.println("devices:"+res2.get(i).getDevices());
+			System.err.println("maisons:"+res2.get(i).getResidence());
+			}
+			*/
 		
 		manager.close();
 		factory.close();
 	}
+
+	
+
 
 }
