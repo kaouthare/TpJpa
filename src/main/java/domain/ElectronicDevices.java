@@ -11,16 +11,12 @@ import javax.persistence.ManyToOne;
 public class ElectronicDevices {
 	private long id;
 	private int conso;
+	private Person person;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="OWNED_ID")
-	private Person Owner;
 	
-	public ElectronicDevices(){
-		
-	}
 	
-	public ElectronicDevices(int ocnso){
+	public ElectronicDevices(int conso, Person person){
+		this.person=person;
 		this.conso=conso;
 	}
 
@@ -41,13 +37,14 @@ public class ElectronicDevices {
 	public void setConso(int conso) {
 		this.conso = conso;
 	}
-
+	
+	@ManyToOne
 	public Person getOwner() {
-		return Owner;
+		return person;
 	}
 
 	public void setOwner(Person owner) {
-		Owner = owner;
+		this.person = owner;
 	}
 
 }

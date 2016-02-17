@@ -17,13 +17,16 @@ public class Home {
 	private int taille; 
 	private int NbPiece;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="OWNED_ID")
-	private Person Owner;
+	
+	private Person person;
 
 	private List<Heaters> chaufagges = new ArrayList<Heaters>();
 	
 	public Home(){
+		
+	}
+	public Home(Person person){
+		this.person=person;
 		
 	}
 	
@@ -58,15 +61,16 @@ public class Home {
 		NbPiece = nbPiece;
 	}
 
+	@ManyToOne
 	public Person getOwner() {
-		return Owner;
+		return person;
 	}
 
 	public void setOwner(Person owner) {
-		Owner = owner;
+		person = owner;
 	}
 	
-	@OneToMany(mappedBy="Residence")
+	@OneToMany(mappedBy="home")
 	public List<Heaters> getChaufagges() {
 		return chaufagges;
 	}
@@ -75,5 +79,16 @@ public class Home {
 		this.chaufagges = chaufagges;
 	}
 	
+	 public void addChauffage(Heaters h){
+		 chaufagges.add(h);
+	    }
+	    
+	    public void removeChauffage(Heaters h){
+	    	chaufagges.remove(h);
+	    }
+	    
+	    
+	   
+		
 	
 }

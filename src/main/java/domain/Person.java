@@ -3,7 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -30,6 +32,14 @@ public class Person {
 		
 	}
 	
+	public Person(Long id, String nom, List<Home> maisons, List<ElectronicDevices> devices) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.Residence = maisons;
+		this.devices = devices;
+		
+	}
 	public Person(String nom, String prenom){
 		this.nom=nom;
 		this.prenom=prenom;
@@ -69,7 +79,7 @@ public class Person {
 		this.email = email;
 	}
 
-	@OneToMany(mappedBy="Owner")
+	@OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
 	public List<Home> getResidence() {
 		return Residence;
 	}
@@ -78,7 +88,7 @@ public class Person {
 		Residence = residence;
 	}
 	
-	@OneToMany(mappedBy="Owner")
+	@OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
 	public List<ElectronicDevices> getDevices() {
 		return devices;
 	}

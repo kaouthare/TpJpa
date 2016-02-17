@@ -5,11 +5,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import domain.Heaters;
+import domain.Home;
+import domain.Person;
+
 public class JpaTest {
 
 	/**
 	 * @param args
 	 */
+	
+	
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("dev");
@@ -20,11 +26,28 @@ public class JpaTest {
 		
 		try {
 			
+			Heaters h1= new Heaters();
+			h1.setConso(200);
+			Heaters h2= new Heaters();
+			h2.setConso(180);
+			Heaters h3= new Heaters();
+			h3.setConso(250);
+			manager.persist(h1);
+			manager.persist(h2);
+			manager.persist(h3);
 			
-/*Person p = new Person();
-			p.setName("martin");
-			manager.persist(p);*/
-	
+			Home r=new Home();
+			r.setNbPiece(10);
+			r.addChauffage(h1);
+			r.addChauffage(h2);
+			r.addChauffage(h3);
+			manager.persist(r);
+			
+			Person p = new Person();
+			p.setNom("martin");
+			p.setPrenom("Dupont");
+			p.addMaisons(r);
+			manager.persist(p);
 			
 			
 		
