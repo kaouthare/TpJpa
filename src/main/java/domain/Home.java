@@ -18,7 +18,7 @@ public class Home {
 	private int NbPiece;
 	
 	
-	private Person person;
+	private Person owner;
 
 	private List<Heaters> chaufagges = new ArrayList<Heaters>();
 	
@@ -26,14 +26,14 @@ public class Home {
 		
 	}
 	public Home(Person person){
-		this.person=person;
+		this.owner=person;
 		
 	}
 	
 	public Home(int taille, int NbPiece, Person person){
 		this.taille=taille;
 		this.NbPiece=NbPiece;
-		this.person=person;
+		this.owner=person;
 	}
 	
 	@Id
@@ -64,11 +64,11 @@ public class Home {
 
 	@ManyToOne
 	public Person getOwner() {
-		return person;
+		return owner;
 	}
 
 	public void setOwner(Person owner) {
-		person = owner;
+		owner = owner;
 	}
 	
 	@OneToMany(mappedBy="home")

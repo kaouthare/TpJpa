@@ -19,7 +19,7 @@ public class JpaTest {
 	
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("dev");
+				.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
 		EntityTransaction tx = manager.getTransaction();
@@ -58,6 +58,14 @@ public class JpaTest {
 			p.addMaisons(r);
 			p.addElec(Elc);
 			manager.persist(p);
+			
+			Person dupont= new Person();
+			dupont.setNom("bennouna");
+			dupont.setPrenom("kaoutar");
+			dupont.setEmail("kaou.benn");
+			manager.persist(dupont);
+			
+			
 			
 			
 		

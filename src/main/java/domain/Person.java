@@ -34,18 +34,17 @@ public class Person {
 	// le constructeur de la classe Personne avec les parametres 
 	
 	public Person(long id, String nom, String prenom, String email, List<Home> maisons, List<ElectronicDevices> devices ){
-		this.id=id;
-		this.nom=nom;
-		this.prenom=prenom;
-		this.email=email;
-		this.Residence=maisons;
-		this.devices=devices;
-		
+		this.id=id; //id
+		this.nom=nom; //nom
+		this.prenom=prenom; //prenom
+		this.email=email; //email 
+		this.Residence=maisons; //maisons
+		this.devices=devices; //Devices
 		
 	}
 	
 	
-
+	//getter et setter de l'id 
 	@Id
 	@GeneratedValue
 	public long getId() {
@@ -56,6 +55,7 @@ public class Person {
 		this.id = id;
 	}
 
+	//getter et setter du nom 
 	public String getNom() {
 		return nom;
 	}
@@ -63,7 +63,8 @@ public class Person {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
+	
+	//getter et setter du prénom 
 	public String getPrenom() {
 		return prenom;
 	}
@@ -71,7 +72,8 @@ public class Person {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
+	
+	//getter et setter de l'email
 	public String getEmail() {
 		return email;
 	}
@@ -79,8 +81,9 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+	
+	//la liste des résidences de la personne 
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
 	public List<Home> getResidence() {
 		return Residence;
 	}
@@ -89,7 +92,8 @@ public class Person {
 		Residence = residence;
 	}
 	
-	@OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+	////getter et setter de la list des electronics devices 
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
 	public List<ElectronicDevices> getDevices() {
 		return devices;
 	}

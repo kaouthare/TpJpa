@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class ElectronicDevices {
 	private long id;
 	private int conso;
-	private Person person;
+	private Person owner;
 	
 	public ElectronicDevices(){
 		
@@ -19,7 +19,7 @@ public class ElectronicDevices {
 	
 	public ElectronicDevices(long id, int conso, Person person){
 		this.id=id;
-		this.person=person;
+		this.owner=person;
 		this.conso=conso;
 	}
 
@@ -43,11 +43,11 @@ public class ElectronicDevices {
 	
 	@ManyToOne
 	public Person getOwner() {
-		return person;
+		return owner;
 	}
 
 	public void setOwner(Person owner) {
-		this.person = owner;
+		this.owner = owner;
 	}
 
 }
