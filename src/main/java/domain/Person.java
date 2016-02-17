@@ -70,7 +70,7 @@ public class Person {
 		this.email = email;
 	}
 
-	
+	@OneToMany(mappedBy="Owner")
 	public List<Home> getResidence() {
 		return Residence;
 	}
@@ -78,7 +78,8 @@ public class Person {
 	public void setResidence(List<Home> residence) {
 		Residence = residence;
 	}
-
+	
+	@OneToMany(mappedBy="Owner")
 	public List<ElectronicDevices> getDevices() {
 		return devices;
 	}
