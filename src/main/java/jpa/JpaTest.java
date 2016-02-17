@@ -17,7 +17,7 @@ public class JpaTest {
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-		System.out.println("je t'aime");
+		System.out.println("je t'aime/nMoi aussi");
 		try {
 			
 			
