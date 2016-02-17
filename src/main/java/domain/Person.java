@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,40 +11,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
+//L'entité qui représente la table personne dans la base de données 
 @Entity
 public class Person {
-	private long id;
-	private String nom;
-	private String prenom;
-	private String email;
-	private List<Home> Residence = new ArrayList<Home>();
-	private List<ElectronicDevices> devices= new ArrayList<ElectronicDevices>();
+	
+	//la liste des attributs liés à une personne (id, nom, prenom, mail, sa ou ses résidences et son ou ses elecroticDevices
+	private long id; //son id
+	private String nom; //nom 
+	private String prenom; //prenom
+	private String email; //email 
+	private List<Home> Residence; //liste des résidences
+	private List<ElectronicDevices> devices; //liste des Devices 
 	
 	
+	//le constructeur de la classe Personne 
 	public Person(){
 		
 	}
 	
-	public Person(String nom, String prenom, String email){
+	
+	// le constructeur de la classe Personne avec les parametres 
+	
+	public Person(long id, String nom, String prenom, String email, List<Home> maisons, List<ElectronicDevices> devices ){
+		this.id=id;
 		this.nom=nom;
 		this.prenom=prenom;
 		this.email=email;
+		this.Residence=maisons;
+		this.devices=devices;
 		
 		
 	}
 	
-	public Person(Long id, String nom, List<Home> maisons, List<ElectronicDevices> devices) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.Residence = maisons;
-		this.devices = devices;
-		
-	}
-	public Person(String nom, String prenom){
-		this.nom=nom;
-		this.prenom=prenom;
-	}
+	
 
 	@Id
 	@GeneratedValue

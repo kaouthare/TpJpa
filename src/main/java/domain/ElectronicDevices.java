@@ -13,9 +13,12 @@ public class ElectronicDevices {
 	private int conso;
 	private Person person;
 	
+	public ElectronicDevices(){
+		
+	}
 	
-	
-	public ElectronicDevices(int conso, Person person){
+	public ElectronicDevices(long id, int conso, Person person){
+		this.id=id;
 		this.person=person;
 		this.conso=conso;
 	}

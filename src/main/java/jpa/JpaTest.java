@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import domain.ElectronicDevices;
 import domain.Heaters;
 import domain.Home;
 import domain.Person;
@@ -25,6 +26,13 @@ public class JpaTest {
 		tx.begin();
 		
 		try {
+			Person p1= new Person();
+			manager.persist(p1);
+			ElectronicDevices Elc= new ElectronicDevices();
+			Elc.setConso(200);
+			Elc.setOwner(p1);
+			manager.persist(Elc);
+			
 			
 			Heaters h1= new Heaters();
 			h1.setConso(200);
@@ -32,6 +40,7 @@ public class JpaTest {
 			h2.setConso(180);
 			Heaters h3= new Heaters();
 			h3.setConso(250);
+			
 			manager.persist(h1);
 			manager.persist(h2);
 			manager.persist(h3);
@@ -47,6 +56,7 @@ public class JpaTest {
 			p.setNom("martin");
 			p.setPrenom("Dupont");
 			p.addMaisons(r);
+			p.addElec(Elc);
 			manager.persist(p);
 			
 			

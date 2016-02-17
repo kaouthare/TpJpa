@@ -15,13 +15,6 @@ public class Heaters {
 	
 	private Home home;
 	
-	public Home getHome() {
-		return home;
-	}
-
-	public void setHome(Home home) {
-		this.home = home;
-	}
 
 	public Heaters(){
 		
@@ -49,13 +42,14 @@ public class Heaters {
 		this.conso = conso;
 	}
 
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="HOME_ID")
-	public Home getResidence() {
+	public Home getHome() {
 		return home;
 	}
 
-	public void setResidence(Home residence) {
-		home = residence;
+	public void setHome(Home home) {
+		this.home = home;
 	}
 }

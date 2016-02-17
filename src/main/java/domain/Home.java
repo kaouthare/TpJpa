@@ -30,9 +30,10 @@ public class Home {
 		
 	}
 	
-	public Home(int taille, int NbPiece){
+	public Home(int taille, int NbPiece, Person person){
 		this.taille=taille;
 		this.NbPiece=NbPiece;
+		this.person=person;
 	}
 	
 	@Id
