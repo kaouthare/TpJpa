@@ -9,6 +9,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import domain.ElectronicDevices;
 import domain.Heaters;
@@ -215,7 +219,31 @@ public class JpaTest {
 			System.err.println("devices:"+res2.get(i).getDevices());
 			System.err.println("maisons:"+res2.get(i).getResidence());
 			}
-			*/
+			*
+		/*Requetes en criteria query ( critéria: s'adapte à la strucutre de la BDD)*/
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder(); //Création du critéria
+		CriteriaQuery<Heaters> query = criteriaBuilder.createQuery(Heaters.class); //Indiquer l'entité
+		Root<Heaters> heater = query.from(Heaters.class); //Indiquer la table
+		query.select(heater); 
+		TypedQuery<Heaters> req = manager.createQuery(query); //Créer la requete
+		List<Heaters> resu = req.getResultList(); 
+		
+		System.out.println("taille:" + resu.size());
+		System.out.println("id:" +resu.get(0).getId());
+		System.out.println("Conso:"+resu.get(0).getConso()); //Get(i) obtenir le i-éme résultat)
+		 
+		
+		/*Test du fonctionnement d'une requete nommé*/
+		Query q = manager.createNamedQuery("Person.findAll"); //Utiliser requete nommée
+		List<Person> res = q.getResultList(); //Recupérer résultat
+		
+		for(int i=0; i< res.size();i++){
+			System.err.println("id:" +res.get(i).getId());
+			System.err.println("nom:"+res.get(i).getNom()); //Get(i) obtenir le i-éme résultat)
+			System.err.println("maisons:"+res.get(i).getResidence());
+			
+		}
+		
 		
 		manager.close();
 		factory.close();
