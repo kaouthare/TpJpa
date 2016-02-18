@@ -37,7 +37,7 @@ out.println("<HTML>\n<BODY>\n" +
 		"</UL>\n" +				
 "</BODY></HTML>");
 
-	
+	//test
 	EntityTransaction tx = EntityManagerHelper.getEntityManager().getTransaction();
 	tx.begin();
 	try {
