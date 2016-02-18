@@ -25,8 +25,8 @@ public class Home {
 	private List<SmartDevices> electronicDevices;
 	
 	//le proprietaire de la maison 
-	@JsonIgnore
-	@XmlTransient
+	//@JsonIgnore
+	//@XmlTransient
 	private Person owner;
 	//une maison a une liste chauffages 
 	//private List<Heaters> chaufagges = new ArrayList<Heaters>();

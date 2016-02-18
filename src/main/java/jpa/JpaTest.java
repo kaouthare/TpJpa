@@ -220,7 +220,7 @@ public class JpaTest {
 			System.err.println("maisons:"+res2.get(i).getResidence());
 			}
 			*
-		/*Requetes en criteria query ( critéria: s'adapte à la strucutre de la BDD)*/
+		/*Requetes en criteria query ( critéria: s'adapte à la strucutre de la BDD)
 		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder(); //Création du critéria
 		CriteriaQuery<Heaters> query = criteriaBuilder.createQuery(Heaters.class); //Indiquer l'entité
 		Root<Heaters> heater = query.from(Heaters.class); //Indiquer la table
@@ -233,7 +233,7 @@ public class JpaTest {
 		System.out.println("Conso:"+resu.get(0).getConso()); //Get(i) obtenir le i-éme résultat)
 		 
 		
-		/*Test du fonctionnement d'une requete nommé*/
+		//Test du fonctionnement d'une requete nommé
 		Query q = manager.createNamedQuery("Person.findAll"); //Utiliser requete nommée
 		List<Person> res = q.getResultList(); //Recupérer résultat
 		
@@ -244,7 +244,7 @@ public class JpaTest {
 			
 		}
 		
-		
+		*/
 		manager.close();
 		factory.close();
 	}
