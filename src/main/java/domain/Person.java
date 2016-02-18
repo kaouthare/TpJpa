@@ -42,6 +42,15 @@ public class Person {
 		this.devices=devices; //Devices
 		
 	}
+	public Person( String nom, String prenom, String email, List<Home> maisons){
+		
+		this.nom=nom; //nom
+		this.prenom=prenom; //prenom
+		this.email=email; //email 
+		this.Residence=maisons; //maisons
+		
+		
+	}
 	
 	
 	//getter et setter de l'id 
