@@ -2,3 +2,11 @@
 0:0:0:0:0:0:0:1 - - [18/Feb/2016:01:49:51 +0100] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-3 4
 0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:03:22 +0100] "GET /myform.html HTTP/1.1" 200 272 http-bio-8080-exec-1 41
 0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:03:23 +0100] "GET /myform.html HTTP/1.1" 304 - http-bio-8080-exec-2 53
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:16:44 +0100] "GET /myform.html HTTP/1.1" 304 - http-bio-8080-exec-1 45
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:16:53 +0100] "POST /UserInfo HTTP/1.1" 200 124 http-bio-8080-exec-2 8
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:17:10 +0100] "GET /Opower.html HTTP/1.1" 404 973 http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:20:14 +0100] "GET /Opower.html HTTP/1.1" 404 973 http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:20:15 +0100] "GET /Opower.html HTTP/1.1" 404 973 http-bio-8080-exec-6 1
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:20:46 +0100] "GET /OpowerFormulaire.html HTTP/1.1" 200 272 http-bio-8080-exec-7 0
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:20:51 +0100] "POST /Opower HTTP/1.1" 200 121 http-bio-8080-exec-8 1
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:20:56 +0100] "POST /Opower HTTP/1.1" 200 121 http-bio-8080-exec-9 0

@@ -48,6 +48,10 @@ public class Home {
 		this.heaters=heaters;
 		this.electronicDevices=electronicDevices;
 	}
+	public Home(int taille, int NbPiece){
+		super();
+		this.taille=taille;
+		this.NbPiece=NbPiece;}
 	
 	@Id
 	@GeneratedValue
