@@ -1,2 +1,4 @@
 0:0:0:0:0:0:0:1 - - [18/Feb/2016:01:49:51 +0100] "GET /index.html HTTP/1.1" 200 11 http-bio-8080-exec-1 41
 0:0:0:0:0:0:0:1 - - [18/Feb/2016:01:49:51 +0100] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-3 4
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:03:22 +0100] "GET /myform.html HTTP/1.1" 200 272 http-bio-8080-exec-1 41
+0:0:0:0:0:0:0:1 - - [18/Feb/2016:02:03:23 +0100] "GET /myform.html HTTP/1.1" 304 - http-bio-8080-exec-2 53
