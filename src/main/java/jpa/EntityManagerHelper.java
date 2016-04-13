@@ -20,6 +20,10 @@ public class EntityManagerHelper {
 	            em = factory.createEntityManager();
 	            threadLocal.set(em);
 	        }
+	        if (!em.isOpen()){
+	            em = factory.createEntityManager();
+	            threadLocal.set(em);
+	        }
 	        return em;
 	    }
 

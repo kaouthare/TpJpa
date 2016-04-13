@@ -21,8 +21,15 @@ public class ElectronicDevices extends SmartDevices{
 		super();
 	}
 	
-	public ElectronicDevices( int conso, Home home){
-		super(conso, home);
+	public ElectronicDevices( String nomSd, int conso, Home home){
+		super(nomSd, conso, home);
+	}
+
+	@Override
+	public String toString() {
+		return "ElectronicDevices [getId()=" + getId() + ", getConso()=" + getConso() + ", getHome()=" + getHome()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 	/*Question 1 à 5
@@ -53,4 +60,5 @@ public class ElectronicDevices extends SmartDevices{
 		this.owner = owner;
 	}
 */
+	
 }

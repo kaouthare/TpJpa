@@ -17,8 +17,8 @@ public class Heaters extends SmartDevices {
 	}
 
 	//constructeur apres heritages 
-	public Heaters(int conso, Home home){
-		super(conso, home);
+	public Heaters(String nomSd, int conso, Home home){
+		super(nomSd, conso, home);
 	}
 	
 	

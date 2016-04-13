@@ -22,7 +22,7 @@ public class Person {
 	private String prenom; //prenom
 	private String email; //email 
 	private List<Home> Residence; //liste des résidences
-	private List<ElectronicDevices> devices; //liste des Devices 
+	//private List<ElectronicDevices> devices; //liste des Devices 
 	
 	
 	//le constructeur de la classe Personne 
@@ -39,7 +39,7 @@ public class Person {
 		this.prenom=prenom; //prenom
 		this.email=email; //email 
 		this.Residence=maisons; //maisons
-		this.devices=devices; //Devices
+		//this.devices=devices; //Devices
 		
 	}
 	public Person( String nom, String prenom, String email, List<Home> maisons){

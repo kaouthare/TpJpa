@@ -20,6 +20,8 @@ public class Home {
 	private long id;
 	private int taille; 
 	private int NbPiece;
+	private String nom;
+	
 	
 	private List<SmartDevices> heaters;
 	private List<SmartDevices> electronicDevices;
@@ -48,10 +50,14 @@ public class Home {
 		this.heaters=heaters;
 		this.electronicDevices=electronicDevices;
 	}
-	public Home(int taille, int NbPiece){
+	public Home(String nom, int taille, int NbPiece){
+		
 		super();
+		this.nom= nom;
 		this.taille=taille;
-		this.NbPiece=NbPiece;}
+		this.NbPiece=NbPiece;
+		
+	}
 	
 	@Id
 	@GeneratedValue
@@ -62,6 +68,17 @@ public class Home {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 
 	public int getTaille() {
 		return taille;
@@ -85,7 +102,7 @@ public class Home {
 	}
 
 	public void setOwner(Person owner) {
-		owner = owner;
+		this.owner = owner;
 	}
 
 	@OneToMany(mappedBy="home")
@@ -137,7 +154,12 @@ public class Home {
 	    }
 	    */
 	    
-	   
+	@Override
+	public String toString() {
+		return "Home [id=" + id + ", taille=" + taille + ", NbPiece=" + NbPiece + ", heaters=" + heaters
+				+ ", electronicDevices=" + electronicDevices + ", owner=" + owner + "]";
+	}
+
 		
 	
 }

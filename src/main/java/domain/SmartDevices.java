@@ -18,13 +18,14 @@ public abstract class SmartDevices {
 	//atributs 
 	private long id;
 	private int conso;
-	
+	private String nomSd;
 	
 	private Home home;
 	
 	//constructeur
-	public SmartDevices(int conso, Home home) {
+	public SmartDevices(String nomSd, int conso, Home home) {
 		super();
+		this.nomSd= nomSd;
 		this.conso=conso;
 		this.home = home;
 	}

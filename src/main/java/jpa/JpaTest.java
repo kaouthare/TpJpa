@@ -1,8 +1,8 @@
 package jpa;
 
-import java.awt.List;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,160 +39,18 @@ public class JpaTest {
 		tx.begin();
 		
 		try {
-			Person P1= new Person();
-			P1.setNom("Dupont");
 			
-			Person P2= new Person();
-			P2.setNom("Legentil");
-			
-			//Créer des maison
-			Home H1=new Home();
-			H1.setNbPiece(2);
-			H1.setTaille(80);
-			
-			Home H2=new Home();
-			H2.setNbPiece(3);
-			H2.setTaille(100);
-			
-		
-			
-			//créer deschauffages
-			Heaters C1= new Heaters();
-			C1.setConso(200);
-			C1.setHome(H2);
-			
-			Heaters C2= new Heaters();
-			C2.setConso(180);
-			C2.setHome(H2);
-			
-			
-			//ajout d'un autre chauffage : heater
-			Heaters C3= new Heaters();
-			C3.setConso(250);
-			C3.setHome(H2);
-			H1.getHeaters().add(C1);
-			H1.getHeaters().add(C2);
-			H2.getHeaters().add(C2);
-			H2.getHeaters().add(C3);
-		
-			
-			ElectronicDevices ED1= new ElectronicDevices();
-			ED1.setConso(34);
-			H1.getElectronicDevices().add(ED1);
-			H2.getElectronicDevices().add(ED1);
-			//Ajouter un deuxieme Device
-			ElectronicDevices ED2= new ElectronicDevices();
-			ED2.setConso(340);
-			H1.getElectronicDevices().add(ED2);
-			
-			P1.addMaisons(H1);
-			P2.getResidence().add(H1);
-			
-			
-			/* Avant héritage 
-			//Ajouter des maison
-			Home H1 = new Home();
-			H1.setTaille(183);
-			H1.setNbPiece(5);
-			
-			Home H2 = new Home();
-			H2.setTaille(53);
-			H2.setNbPiece(2);
-			
-			//Création des personnes 
-			Person P1= new Person();
-			P1.setNom("Dupont");
-			
-			Person P2= new Person();
-			P2.setNom("Legentil");
-			
-			
-			//Ajouter des chauffages
-			Heaters C1= new Heaters();
-			C1.setConso(200);
-			//attribuer le chauffage C1 à la maison H1
-			C1.setHome(H1);
-			manager.persist(C1);
-			
-			//ajout d'un autre chauffage : heater
-			Heaters C2= new Heaters();
-			C2.setConso(180);
-			C2.setHome(H2);
-			manager.persist(C2);
-			
-			//ajout d'un autre chauffage : heater
-			Heaters C3= new Heaters();
-			C3.setConso(250);
-			C3.setHome(H2);
-			manager.persist(C3);
-			
-			//Completer les données des maisons 
-			//Completer maison H1
-			H1.setOwner(P1);
-			H1.getChaufagges().add(C1);
-			manager.persist(H1);
-			
-			//Completer maison H2
-			H2.setOwner(P2);
-			H2.getChaufagges().add(C2);
-			H2.getChaufagges().add(C3);
-			manager.persist(H2);
-			
-			//Ajouter des Electronics Devices
-			
-			ElectronicDevices ED1= new ElectronicDevices();
-			ED1.setConso(34);
-			ED1.setOwner(P1);
-			manager.persist(ED1);
-			
-			//Ajouter un deuxieme Device
-			ElectronicDevices ED2= new ElectronicDevices();
-			ED2.setConso(340);
-			ED2.setOwner(P2);
-			manager.persist(ED2);
-			
-			
-			
-			//Completer les personnes pour pourvoir les ajouter 
-			
-			//Personne 1
-			//Créer les listes
-			ArrayList<Home> homes= new ArrayList<Home>();
-			ArrayList<ElectronicDevices> ElcDevices= new ArrayList<ElectronicDevices>();
-			
-			//Remplir les listes
-			homes.add(H1);
-			ElcDevices.add(ED1);
-			
-			//Attribuer les listes à la personne
-			P1.setDevices(ElcDevices);
-			P1.setResidence(homes);
-			manager.persist(P1);
-			
-			
-			//Personne 2
-			//Créer les listes
-			ArrayList<Home> homes2= new ArrayList<Home>();
-			ArrayList<ElectronicDevices> ElcDevices2= new ArrayList<ElectronicDevices>();
-			
-			//Remplir les listes
-			homes.add(H2);
-			ElcDevices.add(ED2);
-			
-			//Attribuer les listes à la personne
-			P2.setDevices(ElcDevices2);
-			P2.setResidence(homes2);
-			manager.persist(P2);
-
-		*/
-			
+			creerPerson();
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		tx.commit();
 		
+		listerInfos();
 		
+		manager.close();
+		factory.close();
 		
 		/*Liste des requetes
 		
@@ -245,13 +103,175 @@ public class JpaTest {
 		}
 		
 		*/
-		manager.close();
-		factory.close();
+		
 	}
 	
 		
+	private static void creerPerson(){
+		
+		Home H1=new Home("residence 1", 80, 2);
+		List<Home> residences= new ArrayList<Home>();
+		residences.add(H1);
+		
+		//créer deschauffages
+		Heaters C1= new Heaters("Chauffage chambre", 200, H1);
+		Heaters C2= new Heaters("Chauffage cuisine", 100, H1);
+		Heaters C3= new Heaters("Chauffage salon", 180, H1);
+		
+		List<SmartDevices> Chauffages = new ArrayList<SmartDevices>();
+		Chauffages.add(C1);
+		Chauffages.add(C2);
+		Chauffages.add(C3);
+		
+		ElectronicDevices ED1= new ElectronicDevices("Tv", 40, H1);
+		ElectronicDevices ED2= new ElectronicDevices("Phone", 30, H1);
+		ElectronicDevices ED3= new ElectronicDevices("Frigo", 100, H1);
+		
+		List<SmartDevices> Equipements = new ArrayList<SmartDevices>();
+		Equipements.add(ED1);
+		Equipements.add(ED2);
+		Equipements.add(ED3);
+		
+		H1.setHeaters(Chauffages);
+		H1.setElectronicDevices(Equipements);
 	
+		
+		Person P1= new Person("Bennouna", "Kaoutar", "kawtar.be7@gmail.com", residences);
+		Person P2= new Person("Bouka", "Ayoub", "Ayoub.messi@gmail.com", residences);
+		
+		EntityManagerHelper.getEntityManager().persist(H1);
+		EntityManagerHelper.getEntityManager().persist(ED1);
+		EntityManagerHelper.getEntityManager().persist(ED2);
+		EntityManagerHelper.getEntityManager().persist(ED3);
+		EntityManagerHelper.getEntityManager().persist(C1);
+		EntityManagerHelper.getEntityManager().persist(C2);
+		EntityManagerHelper.getEntityManager().persist(C3);
+		EntityManagerHelper.getEntityManager().persist(P1);
+		EntityManagerHelper.getEntityManager().persist(P2);
+		
+		
+		/* Avant héritage 
+		//Ajouter des maison
+		Home H1 = new Home();
+		H1.setTaille(183);
+		H1.setNbPiece(5);
+		
+		Home H2 = new Home();
+		H2.setTaille(53);
+		H2.setNbPiece(2);
+		
+		//Création des personnes 
+		Person P1= new Person();
+		P1.setNom("Dupont");
+		
+		Person P2= new Person();
+		P2.setNom("Legentil");
+		
+		
+		//Ajouter des chauffages
+		Heaters C1= new Heaters();
+		C1.setConso(200);
+		//attribuer le chauffage C1 à la maison H1
+		C1.setHome(H1);
+		manager.persist(C1);
+		
+		//ajout d'un autre chauffage : heater
+		Heaters C2= new Heaters();
+		C2.setConso(180);
+		C2.setHome(H2);
+		manager.persist(C2);
+		
+		//ajout d'un autre chauffage : heater
+		Heaters C3= new Heaters();
+		C3.setConso(250);
+		C3.setHome(H2);
+		manager.persist(C3);
+		
+		//Completer les données des maisons 
+		//Completer maison H1
+		H1.setOwner(P1);
+		H1.getChaufagges().add(C1);
+		manager.persist(H1);
+		
+		//Completer maison H2
+		H2.setOwner(P2);
+		H2.getChaufagges().add(C2);
+		H2.getChaufagges().add(C3);
+		manager.persist(H2);
+		
+		//Ajouter des Electronics Devices
+		
+		ElectronicDevices ED1= new ElectronicDevices();
+		ED1.setConso(34);
+		ED1.setOwner(P1);
+		manager.persist(ED1);
+		
+		//Ajouter un deuxieme Device
+		ElectronicDevices ED2= new ElectronicDevices();
+		ED2.setConso(340);
+		ED2.setOwner(P2);
+		manager.persist(ED2);
+		
+		
+		
+		//Completer les personnes pour pourvoir les ajouter 
+		
+		//Personne 1
+		//Créer les listes
+		ArrayList<Home> homes= new ArrayList<Home>();
+		ArrayList<ElectronicDevices> ElcDevices= new ArrayList<ElectronicDevices>();
+		
+		//Remplir les listes
+		homes.add(H1);
+		ElcDevices.add(ED1);
+		
+		//Attribuer les listes à la personne
+		P1.setDevices(ElcDevices);
+		P1.setResidence(homes);
+		manager.persist(P1);
+		
+		
+		//Personne 2
+		//Créer les listes
+		ArrayList<Home> homes2= new ArrayList<Home>();
+		ArrayList<ElectronicDevices> ElcDevices2= new ArrayList<ElectronicDevices>();
+		
+		//Remplir les listes
+		homes.add(H2);
+		ElcDevices.add(ED2);
+		
+		//Attribuer les listes à la personne
+		P2.setDevices(ElcDevices2);
+		P2.setResidence(homes2);
+		manager.persist(P2);
 
+	*/
+	}
+	
+	private static void listerInfos(){
+		List<Person> Res = EntityManagerHelper.getEntityManager().createQuery("Select p from Person p ", Person.class).getResultList();
+		System.out.println("la liste des personnes :");
+		System.out.println("Nombre de person: " + Res.size());
+		for (Person p : Res){
+			System.out.println( "Perosnne suivante : " + p);
+		}
+		
+		System.out.println("*********");
+		
+		List<SmartDevices> ResSd = EntityManagerHelper.getEntityManager().createQuery("Select s from SmartDevices s ", SmartDevices.class).getResultList();
+		System.out.println("la liste des Smart Devices :");
+		System.out.println("Nombre de Smart Devices: " + ResSd.size());
+		for (SmartDevices Sd : ResSd){
+			System.out.println( "SD suivante : " + Sd);
+		}
+		
+		System.out.println("*********");
+		
+		
+		
+		
+		
+	}
 
 
 }
