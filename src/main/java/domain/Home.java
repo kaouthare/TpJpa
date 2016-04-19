@@ -154,12 +154,7 @@ public class Home {
 	    }
 	    */
 	    
-	@Override
-	public String toString() {
-		return "Home [id=" + id + ", taille=" + taille + ", NbPiece=" + NbPiece + ", heaters=" + heaters
-				+ ", electronicDevices=" + electronicDevices + ", owner=" + owner + "]";
-	}
-
+	
 		
 	
 }

@@ -29,13 +29,14 @@ public class JpaTest {
 	}
 	
 	public static void main(String[] args) {
-		/*Initialisation de l'entityManager*/
+		/*Initialisation de l'entityManager
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
-		EntityTransaction tx = manager.getTransaction();
+		//EntityTransaction tx = manager.getTransaction();
 		/*Ajout des données pour remplir la base de données*/
+		EntityTransaction tx = EntityManagerHelper.getEntityManager().getTransaction();
 		tx.begin();
 		
 		try {
@@ -48,7 +49,9 @@ public class JpaTest {
 		tx.commit();
 		
 		listerInfos();
-		
+		EntityManagerHelper.getEntityManager().close();
+		EntityManagerHelper.getfactory().close();
+		/*
 		manager.close();
 		factory.close();
 		
@@ -139,15 +142,16 @@ public class JpaTest {
 		Person P1= new Person("Bennouna", "Kaoutar", "kawtar.be7@gmail.com", residences);
 		Person P2= new Person("Bouka", "Ayoub", "Ayoub.messi@gmail.com", residences);
 		
-		EntityManagerHelper.getEntityManager().persist(H1);
 		EntityManagerHelper.getEntityManager().persist(ED1);
 		EntityManagerHelper.getEntityManager().persist(ED2);
 		EntityManagerHelper.getEntityManager().persist(ED3);
 		EntityManagerHelper.getEntityManager().persist(C1);
 		EntityManagerHelper.getEntityManager().persist(C2);
 		EntityManagerHelper.getEntityManager().persist(C3);
+		EntityManagerHelper.getEntityManager().persist(H1);
 		EntityManagerHelper.getEntityManager().persist(P1);
 		EntityManagerHelper.getEntityManager().persist(P2);
+		System.out.println("persist");
 		
 		
 		/* Avant héritage 
@@ -265,10 +269,18 @@ public class JpaTest {
 			System.out.println( "SD suivante : " + Sd);
 		}
 		
+	
 		System.out.println("*********");
-		
-		
-		
+		System.out.println("---------------------");
+		CriteriaBuilder cb = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
+		CriteriaQuery query = cb.createQuery(Person.class);
+		Root from = query.from(Person.class);
+		query.select(from).where(cb.equal(from.get("nom"), "Bennouna"));
+		List<Person> result = EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+		for (Object listePerson : result) {
+			System.out.println("liste des personnes qui ont le nom NomTest : " + listePerson);
+		}
+		System.out.println("---------------------");
 		
 		
 	}

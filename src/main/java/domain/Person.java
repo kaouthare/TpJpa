@@ -100,7 +100,13 @@ public class Person {
 	public void setResidence(List<Home> residence) {
 		Residence = residence;
 	}
-	
+	 public void addMaisons(Home maison){
+	    	Residence.add(maison);
+	    }
+	    
+	    public void removeMaisons(Home maison){
+	    	Residence.remove(maison);
+	    }
 	/*
 	////getter et setter de la list des electronics devices 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
@@ -112,13 +118,7 @@ public class Person {
 		this.devices = devices;
 	}*/
 	
-	 public void addMaisons(Home maison){
-	    	Residence.add(maison);
-	    }
-	    
-	    public void removeMaisons(Home maison){
-	    	Residence.remove(maison);
-	    }
+	
 		
 	    /*
 	    public void addElec(ElectronicDevices elec){

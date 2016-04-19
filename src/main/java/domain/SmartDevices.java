@@ -26,7 +26,7 @@ public abstract class SmartDevices {
 	public SmartDevices(String nomSd, int conso, Home home) {
 		super();
 		this.nomSd= nomSd;
-		this.conso=conso;
+		this.conso= conso;
 		this.home = home;
 	}
 	

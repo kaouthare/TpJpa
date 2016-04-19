@@ -25,13 +25,7 @@ public class ElectronicDevices extends SmartDevices{
 		super(nomSd, conso, home);
 	}
 
-	@Override
-	public String toString() {
-		return "ElectronicDevices [getId()=" + getId() + ", getConso()=" + getConso() + ", getHome()=" + getHome()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
-	}
-
+	
 	/*Question 1 à 5
 	@Id
 	@GeneratedValue
