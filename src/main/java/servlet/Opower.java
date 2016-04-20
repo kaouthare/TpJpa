@@ -19,28 +19,25 @@ import domain.Person;
 import domain.SmartDevices;
 import jpa.EntityManagerHelper;
 
-@WebServlet(name="opower",
-urlPatterns={"/Opower"})
+@WebServlet(name="opower", urlPatterns={"/Opower"})
 public class Opower extends HttpServlet {
-	public void doPost(HttpServletRequest request,
-			HttpServletResponse response)
-throws ServletException, IOException {
-response.setContentType("text/html");
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
 
-PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 
 
-out.println("<HTML>\n<BODY>\n" +
+		out.println("<HTML>\n<BODY>\n" +
 		"<H1>Affichage des informations</H1>\n" +
 		"<UL>\n" +			
-" <LI>Nom: "
-		+ request.getParameter("nom") + "\n" +
+		" <LI>Nom: "
+			+ request.getParameter("nom") + "\n" +
 		" <LI>Prenom: "
-		+ request.getParameter("prenom") + "\n" +
-		" <LI>Email: "
-		+ request.getParameter("email") + "\n" +
+			+ request.getParameter("conso") + "\n" +
+	
 		" <LI>Maison: "
-		+ request.getParameter("maison") + "\n" +
+		+ request.getParameter("home") + "\n" +
 		"</UL>\n" +				
 "</BODY></HTML>");
 
@@ -48,7 +45,12 @@ out.println("<HTML>\n<BODY>\n" +
 	EntityTransaction tx = EntityManagerHelper.getEntityManager().getTransaction();
 	tx.begin();
 	try {
-		Home home0 = new Home("residence principale",300,10);
+		Home home0 = new Home("residence principale", 300, 10);
+		Heaters C1 = new Heaters(request.getParameter("nom"), Integer.parseInt(request.getParameter("conso")), home0);
+		EntityManagerHelper.getEntityManager().persist(home0);
+		EntityManagerHelper.getEntityManager().persist(C1);
+
+		/*
 		Heaters C1 = new Heaters("chauffage cuisine", 150, home0);
 		Heaters C2 = new Heaters("chauffage salon", 200, home0);
 		ElectronicDevices Ed1= new ElectronicDevices("Tv", 20, home0);
@@ -64,13 +66,13 @@ out.println("<HTML>\n<BODY>\n" +
 		home0.setHeaters(listConsoChauffage);
 		List<Home> homes = new ArrayList<Home>();
 		homes.add(home0);
-		Person personne = new Person(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("email"), homes);
-		EntityManagerHelper.getEntityManager().persist(home0);
-		EntityManagerHelper.getEntityManager().persist(C1);
+		
+		
 		EntityManagerHelper.getEntityManager().persist(C2);
 		EntityManagerHelper.getEntityManager().persist(Ed1);
 		EntityManagerHelper.getEntityManager().persist(Ed2);
 		EntityManagerHelper.getEntityManager().persist(personne);
+		*/
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -82,7 +84,7 @@ out.println("<HTML>\n<BODY>\n" +
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String query = "select p from Person as p";
+		String query = "select h from Heaters as h";
 		List result2 = EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
 		out.println("<HTML>\n<BODY>\n" +
 				"<H1>Recapitulatif des informations</H1>\n" +

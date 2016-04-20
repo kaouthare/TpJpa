@@ -41,8 +41,7 @@ public class Home {
 	}
 	
 	
-	public Home(int taille, int NbPiece, Person person, List<SmartDevices> heaters,
-			List<SmartDevices> electronicDevices){
+	public Home(int taille, int NbPiece, Person person, List<SmartDevices> heaters, List<SmartDevices> electronicDevices){
 		super();
 		this.taille=taille;
 		this.NbPiece=NbPiece;
