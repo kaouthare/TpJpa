@@ -10,10 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 //L'entité qui représente la table personne dans la base de données 
 @Entity
+@XmlRootElement
 public class Person {
 	
 	//la liste des attributs liés à une personne (id, nom, prenom, mail, sa ou ses résidences et son ou ses elecroticDevices

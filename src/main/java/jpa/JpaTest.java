@@ -137,18 +137,22 @@ public class JpaTest {
 		
 		H1.setHeaters(Chauffages);
 		H1.setElectronicDevices(Equipements);
+		
 	
 		
 		Person P1= new Person("Bennouna", "Kaoutar", "kawtar.be7@gmail.com", residences);
 		Person P2= new Person("Bouka", "Ayoub", "Ayoub.messi@gmail.com", residences);
+		H1.setOwner(P1);
 		
+		
+		EntityManagerHelper.getEntityManager().persist(H1);
 		EntityManagerHelper.getEntityManager().persist(ED1);
 		EntityManagerHelper.getEntityManager().persist(ED2);
 		EntityManagerHelper.getEntityManager().persist(ED3);
 		EntityManagerHelper.getEntityManager().persist(C1);
 		EntityManagerHelper.getEntityManager().persist(C2);
 		EntityManagerHelper.getEntityManager().persist(C3);
-		EntityManagerHelper.getEntityManager().persist(H1);
+		
 		EntityManagerHelper.getEntityManager().persist(P1);
 		EntityManagerHelper.getEntityManager().persist(P2);
 		System.out.println("persist");

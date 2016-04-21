@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -13,8 +14,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 //Question 5 la classe mère des classes Heaters et ElectronicDevices
 
 @Entity
+@XmlRootElement
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)  //Definir l'heritage 
-public abstract class SmartDevices {
+public class SmartDevices {
 	//atributs 
 	private long id;
 	private int conso;

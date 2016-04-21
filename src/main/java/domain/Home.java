@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,10 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+@XmlRootElement
 @Entity
 public class Home {
 	// les attributs de la classe Home : maison
@@ -96,6 +99,7 @@ public class Home {
 	}
 
 	@ManyToOne
+	@JoinColumn(name="ownerId")
 	public Person getOwner() {
 		return owner;
 	}
@@ -104,7 +108,7 @@ public class Home {
 		this.owner = owner;
 	}
 
-	@OneToMany(mappedBy="home")
+	@OneToMany(mappedBy="home", fetch=FetchType.EAGER)
 	public List<SmartDevices> getHeaters() {
 		return heaters;
 	}
