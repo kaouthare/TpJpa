@@ -57,8 +57,8 @@ public class SmartDevices {
 	}
 	
 	@ManyToOne
-	//@JsonIgnore
-	//@XmlTransient
+	@JsonIgnore
+	@XmlTransient
 	public Home getHome() {
 		return home;
 	}

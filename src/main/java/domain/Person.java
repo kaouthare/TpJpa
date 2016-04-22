@@ -11,11 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 //L'entité qui représente la table personne dans la base de données 
 @Entity
 @XmlRootElement
+
 public class Person {
 	
 	//la liste des attributs liés à une personne (id, nom, prenom, mail, sa ou ses résidences et son ou ses elecroticDevices
@@ -95,6 +100,8 @@ public class Person {
 	
 	//la liste des résidences de la personne 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
+	@JsonIgnore
+	@XmlTransient 
 	public List<Home> getResidence() {
 		return Residence;
 	}

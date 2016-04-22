@@ -12,12 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 @XmlRootElement
 @Entity
+
 public class Home {
 	// les attributs de la classe Home : maison
 	private long id;
@@ -30,8 +32,8 @@ public class Home {
 	private List<SmartDevices> electronicDevices;
 	
 	//le proprietaire de la maison 
-	//@JsonIgnore
-	//@XmlTransient
+	@JsonIgnore
+	@XmlTransient
 	private Person owner;
 	//une maison a une liste chauffages 
 	//private List<Heaters> chaufagges = new ArrayList<Heaters>();
